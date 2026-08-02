@@ -8,9 +8,9 @@ import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY") or os.environ.get("DJANGO_SECRET_KEY")
 if not SECRET_KEY:
-    raise RuntimeError("SECRET_KEY environment variable is required")
+    raise RuntimeError("SECRET_KEY or DJANGO_SECRET_KEY environment variable is required")
 
 DEBUG = os.environ.get("DEBUG", "False").lower() in {"1", "true", "yes"}
 
